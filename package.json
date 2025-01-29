@@ -6,7 +6,8 @@
     "main": "main.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "dev": "vite"
+      "dev": "vite",
+      "build": "node main.js && mkdir build && cp -r dist/* build/ && cp -r public/* build/"
     },
     "devDependencies": {
     "vite": "^6.0.11"

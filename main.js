@@ -1,4 +1,3 @@
-import { el } from "./lib/elements.js";
 import fs from "node:fs/promises" ;
 import path from "node:path";
 import { makeDir, makeFile } from './lib/makeFiles.js';
@@ -69,7 +68,7 @@ function generateContent(data) {
 
     questions.forEach(item => {
         let question = `
-        <h3>${item.question}</h3>
+        <h3>${escapeHTML(item.question)}</h3>
         <form>`;
         let answers = item.answers;
         console.log(answers)
@@ -78,7 +77,7 @@ function generateContent(data) {
         try {answers.forEach(option => {
             question = question + `
                 <label>
-                    <input type="radio" name="${answerGroup}" class="${option.correct}"> ${option.answer}
+                    <input type="radio" name="${answerGroup}" class="${option.correct}"> ${escapeHTML(option.answer)}
                 </label><br>`
         });
         questionNumber++;
@@ -102,6 +101,10 @@ function generateIndexContent(data) {
     });
 
     return body;
+}
+
+function escapeHTML(string) {
+    return string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/</g, "&gt;")
 }
 
 main();

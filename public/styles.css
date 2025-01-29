@@ -1,0 +1,7 @@
+.answer.true.selected {
+    background-color: lightgreen;
+  }
+  
+  .answer.false.selected {
+    background-color: lightcoral;
+  }  

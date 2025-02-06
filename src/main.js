@@ -74,10 +74,12 @@ function generateContent(data) {
         let answerGroup = `${data.title}${questionNumber}`
 
         try {answers.forEach(option => {
-            question = question + `
-                <label>
-                    <input type="radio" name="${answerGroup}" class="${option.correct}"> ${escapeHTML(option.answer)} </input>
-                </label>`
+            if (option.answer !== undefined) {
+                question = question + `
+                    <label>
+                        <input type="radio" name="${answerGroup}" class="${option.correct}"> ${escapeHTML(option.answer)} </input>
+                    </label>`
+            }
         });
         questionNumber++;
         body = body + question + `

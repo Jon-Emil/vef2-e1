@@ -8,11 +8,11 @@ html {
 }
 
 .correct {
-  background-color: #595;
+  background-color: #373;
 }
 
 .incorrect {
-background-color: lightcoral;
+background-color: #733;
 }  
 
 body {
@@ -27,6 +27,7 @@ main {
   background-color: #111;
   flex: 1;
   min-width: 800px;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,13 +45,9 @@ h1, h3, label {
   color: #efe;
 }
 
-label {
-  flex: 1;
-}
-
 form {
   align-self: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 5px;
 }

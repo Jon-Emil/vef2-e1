@@ -2,7 +2,7 @@ import fs from "node:fs/promises" ;
 import path from "node:path";
 import { makeDir, makeFile } from './lib/makeFiles.js';
 
-async function readJson(fileName) {
+export async function readJson(fileName) {
     const fileURL = `./data/${fileName}`;
     console.log("reading: ", fileURL);
     try {
@@ -71,40 +71,44 @@ function generateContent(data) {
         <h3>${escapeHTML(item.question)}</h3>
         <form>`;
         let answers = item.answers;
-        console.log(answers)
         let answerGroup = `${data.title}${questionNumber}`
 
         try {answers.forEach(option => {
             question = question + `
                 <label>
-                    <input type="radio" name="${answerGroup}" class="${option.correct}"> ${escapeHTML(option.answer)}
-                </label><br>`
+                    <input type="radio" name="${answerGroup}" class="${option.correct}"> ${escapeHTML(option.answer)} </input>
+                </label>`
         });
         questionNumber++;
-        body = body + question;
+        body = body + question + `
+        </form>`;
         }
         catch(e){
-            console.error("invalid question");
+            console.error("invalid question", e);
         }
     })
 
     return body
 }
 
-function generateIndexContent(data) {
-    let body = "<h1>Index<h1>";
+export function generateIndexContent(data) {
+    let body = `<h1>Index<h1>
+                <ul>`;
 
     data.forEach(item => {
         const section = `
-          <a href="./${item.file.split(".")[0] + ".html"}">${item.title}<a>`;
-        body = body + section;
+          <li><a href="./${item.file.split(".")[0] + ".html"}">${item.title}</a></li>`;
+        body = body + section + `
+        <ul>`;
     });
 
     return body;
 }
 
-function escapeHTML(string) {
-    return string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/</g, "&gt;")
-}
+export function escapeHTML(string) {
+if (string) {
+        return string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    
+}}
 
 main();

@@ -1,7 +1,56 @@
-.answer.true.selected {
-    background-color: lightgreen;
-  }
-  
-  .answer.false.selected {
-    background-color: lightcoral;
-  }  
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.correct {
+  background-color: #595;
+}
+
+.incorrect {
+background-color: lightcoral;
+}  
+
+body {
+  background-color: #010101;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+main {
+  background-color: #111;
+  flex: 1;
+  min-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  gap: 12px;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  gap: 12px;
+}
+
+h1, h3, label {
+  color: #efe;
+}
+
+label {
+  flex: 1;
+}
+
+form {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}

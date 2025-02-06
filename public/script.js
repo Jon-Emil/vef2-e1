@@ -1,15 +1,21 @@
-function makeListeners() {
-    document.querySelectorAll("input[type='radio']").forEach((radio) => {
-        radio.addEventListener("change", function () {
-          let labels = this.closest("form").querySelectorAll(`[name="${this.name}"]`);
-        
-          labels.forEach((input) => {
-            input.parentElement.classList.remove("selected");
+document.addEventListener("DOMContentLoaded", () => {
+  const inputs = document.querySelectorAll("input[type='radio']");
+  
+  inputs.forEach(input => {
+      input.addEventListener("change", () => {
+          const form = input.closest("form");
+          const labels = form.querySelectorAll("label");
+          
+          labels.forEach(label => {
+              label.classList.remove("correct", "incorrect");
           });
-      
-          this.parentElement.classList.add("selected");
-        });
+          
+          const label = input.closest("label");
+          if (input.classList.contains("true")) {
+              label.classList.add("correct");
+          } else {
+              label.classList.add("incorrect");
+          }
       });
-}
-
-makeListeners();
+  });
+});
